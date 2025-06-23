@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Let Dhaka | Find Your Next Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .search-card {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">
+                To-Let <span class="text-emerald-500">Dhaka</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-gray-600 hover:text-emerald-500 transition-colors">Home</a>
+                <a href="#" class="text-gray-600 hover:text-emerald-500 transition-colors">Listings</a>
+                <a href="#" class="text-gray-600 hover:text-emerald-500 transition-colors">About</a>
+                <a href="#" class="text-gray-600 hover:text-emerald-500 transition-colors">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                 <a href="#" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">Log In</a>
+                 <a href="#" class="px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-lg hover:bg-emerald-600 transition-colors">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="container mx-auto px-6 py-8 md:py-16">
+        <div class="relative h-[500px] rounded-2xl overflow-hidden">
+            <!-- Background Image -->
+            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=2520&auto=format&fit=crop" 
+                 onerror="this.onerror=null;this.src='https://placehold.co/1200x500/e2e8f0/4a5568?text=Dhaka+Cityscape';"
+                 alt="Dhaka Cityscape" 
+                 class="w-full h-full object-cover">
+            
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+            <!-- Content -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Find Your Perfect Rental</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">Search from thousands of listings to find your ideal home for rent in and around Dhaka.</p>
+                
+                <!-- Search Card -->
+                <div class="w-full max-w-4xl p-4 bg-white/20 search-card rounded-2xl shadow-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4">
+                        <input type="text" id="location-search" placeholder="Enter an area, e.g., Gulshan" class="md:col-span-2 lg:col-span-2 w-full p-3 text-gray-700 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 transition">
+                        <select id="beds-filter" class="w-full p-3 text-gray-500 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 transition">
+                            <option value="">Beds (Any)</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4+</option>
+                        </select>
+                        <select id="baths-filter" class="w-full p-3 text-gray-500 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 transition">
+                            <option value="">Baths (Any)</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4+</option>
+                        </select>
+                        <button id="search-button" class="w-full p-3 text-white bg-emerald-500 rounded-lg hover:bg-emerald-600 font-semibold transition-colors flex items-center justify-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Listings Section -->
+        <section class="py-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Available Listings</h2>
+            <div id="listings-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Property listings will be dynamically injected here by JavaScript -->
+            </div>
+             <div id="no-results" class="text-center text-gray-500 py-16 hidden">
+                <h3 class="text-2xl font-semibold">No properties found</h3>
+                <p>Try adjusting your search filters to find more results.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold">To-Let Dhaka</h3>
+                    <p class="mt-4 text-sm text-gray-400">Your trusted partner in finding the perfect home in Dhaka. We simplify the rental process.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Quick Links</h3>
+                    <ul class="mt-4 space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Listings</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Post a Property</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Popular Areas</h3>
+                    <ul class="mt-4 space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Gulshan</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Banani</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Dhanmondi</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Uttara</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Subscribe</h3>
+                    <p class="mt-4 text-sm text-gray-400">Get the latest listings and deals straight to your inbox.</p>
+                    <div class="mt-4 flex">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 text-gray-800 bg-gray-100 rounded-l-lg focus:outline-none">
+                        <button class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 rounded-r-lg font-semibold transition-colors">Go</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
+                &copy; 2024 To-Let Dhaka. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- PROPERTY DATABASE ---
+        // In a real application, this data would come from a server.
+        const properties = [
+            {
+                id: 1,
+                title: 'Spacious 3-Bed Apartment',
+                location: 'Gulshan',
+                price: 85000,
+                beds: 3,
+                baths: 3,
+                sqft: 2200,
+                image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2000&auto=format&fit=crop',
+                image_alt: 'Modern apartment in Gulshan',
+                tag: 'Featured',
+                tag_color: 'bg-emerald-500'
+            },
+            {
+                id: 2,
+                title: 'Cozy Home Near Lake',
+                location: 'Dhanmondi',
+                price: 60000,
+                beds: 4,
+                baths: 3,
+                sqft: 1800,
+                image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop',
+                image_alt: 'Cozy family home in Dhanmondi',
+                tag: null,
+                tag_color: null
+            },
+            {
+                id: 3,
+                title: 'Modern Studio near Airport',
+                location: 'Uttara',
+                price: 25000,
+                beds: 1,
+                baths: 1,
+                sqft: 850,
+                image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop',
+                image_alt: 'Studio flat in Uttara',
+                tag: 'New',
+                tag_color: 'bg-amber-500'
+            },
+            {
+                id: 4,
+                title: 'Luxury Flat in Banani',
+                location: 'Banani',
+                price: 95000,
+                beds: 3,
+                baths: 4,
+                sqft: 2500,
+                image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop',
+                image_alt: 'Luxury flat in Banani',
+                tag: 'Premium',
+                tag_color: 'bg-violet-500'
+            },
+            {
+                id: 5,
+                title: 'Affordable 2-Bed Flat',
+                location: 'Mirpur',
+                price: 22000,
+                beds: 2,
+                baths: 2,
+                sqft: 1200,
+                image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1980&auto=format&fit=crop',
+                image_alt: 'Affordable flat in Mirpur',
+                tag: null,
+                tag_color: null
+            },
+            {
+                id: 6,
+                title: 'Penthouse with City View',
+                location: 'Gulshan',
+                price: 150000,
+                beds: 4,
+                baths: 5,
+                sqft: 3500,
+                image: 'https://images.unsplash.com/photo-1613553424170-1a4c5a363799?q=80&w=2070&auto=format&fit=crop',
+                image_alt: 'Penthouse with a city view',
+                tag: 'Luxury',
+                tag_color: 'bg-rose-500'
+            }
+        ];
+
+        // --- DOM ELEMENTS ---
+        const listingsContainer = document.getElementById('listings-container');
+        const noResultsDiv = document.getElementById('no-results');
+        const searchButton = document.getElementById('search-button');
+        const locationInput = document.getElementById('location-search');
+        const bedsFilter = document.getElementById('beds-filter');
+        const bathsFilter = document.getElementById('baths-filter');
+
+        // --- FUNCTIONS ---
+
+        /**
+         * Renders a list of properties to the page.
+         * @param {Array} propertyList - The array of properties to display.
+         */
+        function displayProperties(propertyList) {
+            // Clear current listings
+            listingsContainer.innerHTML = '';
+
+            // Check if list is empty
+            if (propertyList.length === 0) {
+                listingsContainer.classList.add('hidden');
+                noResultsDiv.classList.remove('hidden');
+            } else {
+                listingsContainer.classList.remove('hidden');
+                noResultsDiv.classList.add('hidden');
+            }
+            
+            // Loop through properties and create HTML for each card
+            propertyList.forEach(prop => {
+                const card = `
+                <a href="listing-detail.html" class="block bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+                    <div class="relative">
+                        <img class="w-full h-56 object-cover" src="${prop.image}" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Image+Not+Available';"
+                             alt="${prop.image_alt}">
+                        ${prop.tag ? `<div class="absolute top-4 left-4 ${prop.tag_color} text-white text-xs font-semibold px-3 py-1 rounded-full">${prop.tag}</div>` : ''}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                             <div>
+                                <p class="text-sm text-gray-500">Apartment in ${prop.location}</p>
+                                <h3 class="text-xl font-bold text-gray-900 mt-1">${prop.title}</h3>
+                            </div>
+                            <p class="text-xl font-bold text-emerald-500">৳${prop.price.toLocaleString()}<span class="text-sm font-normal text-gray-500">/month</span></p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200 flex justify-between text-sm text-gray-600">
+                           <span class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9.5A18.034 18.034 0 019 14.153m2.11-1.453a5.975 5.975 0 00-4.22 0M7 13h10M7 16h10" /></svg>
+                                ${prop.beds} Bed${prop.beds > 1 ? 's' : ''}
+                           </span>
+                            <span class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                ${prop.baths} Bath${prop.baths > 1 ? 's' : ''}
+                           </span>
+                           <span class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 1v4m0 0h-4m4 0l-5-5" /></svg>
+                                ${prop.sqft} sqft
+                           </span>
+                        </div>
+                    </div>
+                </a>
+                `;
+                listingsContainer.innerHTML += card;
+            });
+        }
+        
+        /**
+         * Filters properties based on user input and displays them.
+         */
+        function handleSearch() {
+            const locationQuery = locationInput.value.toLowerCase();
+            const bedsQuery = parseInt(bedsFilter.value);
+            const bathsQuery = parseInt(bathsFilter.value);
+
+            const filteredProperties = properties.filter(prop => {
+                const matchesLocation = prop.location.toLowerCase().includes(locationQuery);
+                
+                // Check beds: true if no filter or if it matches
+                const matchesBeds = !bedsQuery || (bedsQuery < 4 ? prop.beds === bedsQuery : prop.beds >= 4);
+
+                // Check baths: true if no filter or if it matches
+                const matchesBaths = !bathsQuery || (bathsQuery < 4 ? prop.baths === bathsQuery : prop.baths >= 4);
+                
+                return matchesLocation && matchesBeds && matchesBaths;
+            });
+
+            displayProperties(filteredProperties);
+        }
+
+        // --- EVENT LISTENERS ---
+        searchButton.addEventListener('click', handleSearch);
+        
+        // Optional: Allow pressing Enter to search
+        locationInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+
+        // --- INITIAL PAGE LOAD ---
+        // Display all properties when the page first loads.
+        window.onload = () => {
+            displayProperties(properties);
+        };
+
+    </script>
+</body>
+</html>
