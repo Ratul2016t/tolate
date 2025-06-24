@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Let Dhaka | List Your Property</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0x30z3B540/63I5E9S25O3/J2+j+8n0lG5yJ/z5V4+t+6+x+v+7+B+Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            50: '#ECFDF5', 100: '#D1FAE5', 200: '#A7F3D0', 300: '#6EE7B7',
+                            400: '#34D399', 500: '#10B981', 600: '#059669', 700: '#047857',
+                            800: '#065F46', 900: '#064E3B',
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .form-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 800px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            color: #333;
+            transition: all 0.2s ease-in-out;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #10B981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+        textarea.input-field {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .btn-primary {
+            background-color: #10B981;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #059669;
+        }
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #10B981;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .message-box.show {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased flex flex-col">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-800">
+                To-Let <span class="text-emerald-500">Dhaka</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-emerald-500 transition-colors duration-200">Home</a>
+                <a href="#" class="text-gray-600 hover:text-emerald-500 transition-colors duration-200">Listings</a>
+                <a href="#" class="text-gray-600 hover:text-emerald-500 transition-colors duration-200">About</a>
+                <a href="#" class="text-gray-600 hover:text-emerald-500 transition-colors duration-200">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+               <a href="login.html" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors duration-200">Log In</a>
+               <a href="#" class="px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded-full hover:bg-emerald-600 transition-colors duration-200">Post a Property</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-4 py-12">
+        <div class="form-card">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">List Your Property</h2>
+            <form id="listingForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="md:col-span-2">
+                    <label for="property-title" class="block text-gray-700 text-sm font-medium mb-2">Property Title</label>
+                    <input type="text" id="property-title" name="property-title" placeholder="e.g., Spacious 3-Bed Apartment" required class="input-field">
+                </div>
+
+                <div>
+                    <label for="location" class="block text-gray-700 text-sm font-medium mb-2">Location</label>
+                    <input type="text" id="location" name="location" placeholder="e.g., Gulshan, Dhaka" required class="input-field">
+                </div>
+
+                <div>
+                    <label for="property-type" class="block text-gray-700 text-sm font-medium mb-2">Property Type</label>
+                    <select id="property-type" name="property-type" required class="input-field">
+                        <option value="">Select Type</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="house">House</option>
+                        <option value="studio">Studio</option>
+                        <option value="sublet">Sublet</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="beds" class="block text-gray-700 text-sm font-medium mb-2">Number of Bedrooms</label>
+                    <input type="number" id="beds" name="beds" placeholder="e.g., 3" min="1" required class="input-field">
+                </div>
+
+                <div>
+                    <label for="baths" class="block text-gray-700 text-sm font-medium mb-2">Number of Bathrooms</label>
+                    <input type="number" id="baths" name="baths" placeholder="e.g., 2" min="1" required class="input-field">
+                </div>
+
+                <div>
+                    <label for="area-sqft" class="block text-gray-700 text-sm font-medium mb-2">Area (Sq. Ft.)</label>
+                    <input type="number" id="area-sqft" name="area-sqft" placeholder="e.g., 1500" min="100" required class="input-field">
+                </div>
+
+                <div>
+                    <label for="monthly-rent" class="block text-gray-700 text-sm font-medium mb-2">Monthly Rent (৳)</label>
+                    <input type="number" id="monthly-rent" name="monthly-rent" placeholder="e.g., 45000" min="1000" required class="input-field">
+                </div>
+                
+                <div class="md:col-span-2">
+                    <label for="description" class="block text-gray-700 text-sm font-medium mb-2">Property Description</label>
+                    <textarea id="description" name="description" placeholder="Provide a detailed description of your property..." rows="5" required class="input-field"></textarea>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label for="property-images" class="block text-gray-700 text-sm font-medium mb-2">Property Images (Upload)</label>
+                    <input type="file" id="property-images" name="property-images" accept="image/*" multiple class="input-field pt-2" aria-describedby="file_input_help">
+                    <p class="mt-1 text-sm text-gray-500" id="file_input_help">PNG, JPG, or JPEG (Max 5MB per image).</p>
+                </div>
+
+                <div class="md:col-span-2 mt-4 text-center">
+                    <button type="submit" class="btn-primary px-8 py-3 text-lg">
+                        <i class="fas fa-plus-circle mr-2"></i> Submit Listing
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Message Box -->
+    <div id="messageBox" class="message-box">
+        Listing submitted successfully! (This is a demo, no actual data saved.)
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="w-full bg-gray-800 text-white py-6 mt-auto">
+        <div class="container mx-auto px-6 text-center text-sm text-gray-400">
+            &copy; 2024 To-Let Dhaka. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const listingForm = document.getElementById('listingForm');
+        const messageBox = document.getElementById('messageBox');
+
+        listingForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // In a real application, you would collect form data and send it to a server
+            const formData = new FormData(listingForm);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            console.log('Form data submitted:', data);
+
+            // Show success message
+            messageBox.classList.add('show');
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+                // Optionally clear the form or redirect
+                listingForm.reset();
+            }, 3000); // Hide after 3 seconds
+        });
+    </script>
+</body>
+</html>
