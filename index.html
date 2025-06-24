@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons (Heart, Star, Search, etc.) -->
+    <!-- Corrected Font Awesome link attributes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0x30z3B540/63I5E9S25O3/J2+j+8n0lG5yJ/z5V4+t+6+x+v+7+B+Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
         tailwind.config = {
@@ -40,7 +41,12 @@
         .search-card {
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.2); /* Slightly more transparent */
+            /* Added background image for the search card */
+            background-image: url('https://raw.githubusercontent.com/Ratul2016t/tolate/refs/heads/main/download%20(1).png');
+            background-size: cover;
+            background-position: center;
+            /* Made the background color significantly more transparent */
+            background-color: rgba(255, 255, 255, 0.05); /* Increased transparency */
             border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
         }
         /* Styles for inputs and selects within the search card */
@@ -431,7 +437,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-gray-400 property-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9.5A18.034 18.034 0 019 14.153m2.11-1.453a5.975 5.975 0 00-4.22 0M7 13h10M7 16h10" /></svg>
                                 ${prop.beds} Bed${prop.beds > 1 ? 's' : ''}
                            </span>
-                            <span class="flex items-center">
+                           <span class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-gray-400 property-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 ${prop.baths} Bath${prop.baths > 1 ? 's' : ''}
                            </span>
